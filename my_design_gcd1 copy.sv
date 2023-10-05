@@ -15,73 +15,65 @@ module my_design_gcd1 # (
   timeunit 1ns;
   timeprecision 1ns;
 
-  gcd_data gcd_inputs;
+  gcd_data gcd_inputs = '0;
   
-  logic start = 1;
-
   logic signed [DATA_WIDTH-1:0] sub;
   
-  gcd_data gcd_in_temp;
-  gcd_data gcd_o_temp;
+  gcd_data gcd_in_temp = '0;
+  gcd_data gcd_o_temp  = '0;
+
+
+
 
   typedef enum logic [1:0]{
-      S_INICIAL, //00
-      S_BIGA, //01
-      S_BIGB, //10
-      S_FINISH //11
+      S_BIGA, //00
+      S_BIGB, //01
+      S_FINISH //10
   } state_e;
 
   state_e state, next_state;
 
-
-//Esto solo se deberia ejecutar una vez iniciando
-always_ff @(posedge clk_i or negedge nreset_i) begin 
+  always_ff @(posedge clk_i or negedge nreset_i) begin 
     if(!nreset_i) 
         gcd_inputs <= '0;
-    else /*if(start == 1'b1) */
-    begin
-        state <= S_INICIAL;
+    else begin
         gcd_inputs.a <= operand_a_i;
         gcd_inputs.b <= operand_b_i;
     end 
 end
-
-
+  
   always_ff @(posedge clk_i or negedge nreset_i) begin 
     if(!nreset_i) 
-    begin
-        gcd_inputs <= '0;
-        state <= S_FINISH;
-    end
-    else
-    begin 
-        state <= next_state;
-    end
-/*    else if(start == 1'b1) 
-    begin
-        state <= S_INICIAL;
-        gcd_inputs.a <= operand_a_i;
-        gcd_inputs.b <= operand_b_i;
-        start <= 1'b0;
-    end
-*/
-  
+        state = S_FINISH;
+    else 
+        state = next_state;
   end
 
+  always_comb begin
+      if(gcd_inputs.b == 2'b00 | gcd_inputs.a == 2'b00)
+      begin 
+              if (operand_b_i == 0) begin 
+                next_state = S_FINISH; 
+              end
+              else if (operand_a_i  == 0) begin 
+                  gcd_inputs.a = operand_b_i;
+                  next_state = S_FINISH;
+              end
+              else if(operand_a_i > operand_b_i) begin 
+                next_state = S_BIGA; 
+              end
+              else if (operand_b_i > operand_a_i) begin 
+                next_state = S_BIGB; 
+              end
+              else if (operand_a_i == operand_b_i) begin 
+                gcd_inputs.a = operand_a_i;
+                next_state = S_FINISH; 
+              end
 
-  always_comb begin 
+      end
+      else if (gcd_inputs.b > 2'b00 && gcd_inputs.a > 2'b00)
+      begin 
         case(state)
-        S_INICIAL : begin
-                if(gcd_inputs.a > gcd_inputs.b) begin
-                  next_state = S_BIGA; 
-                end
-                else if(gcd_inputs.b > gcd_inputs.a) begin
-                  next_state = S_BIGB; 
-                end
-                else if (gcd_inputs.a == gcd_inputs.b) begin 
-                    next_state  = S_FINISH; 
-                end
-        end        
         S_BIGA : begin
                 if(gcd_inputs.b > gcd_inputs.a) begin
                   next_state = S_BIGB; 
@@ -101,6 +93,7 @@ end
         S_FINISH : next_state = S_FINISH;
         default : next_state = next_state;
         endcase
+      end
   end
 
 
@@ -121,6 +114,10 @@ end
                   gcd_o_temp.b = gcd_inputs.a;
                   gcd_in_temp.a = gcd_inputs.a;
                   gcd_in_temp.b = gcd_inputs.b;
+                  end
+          default : begin 
+                  gcd_o_temp.a = '0;
+                  gcd_o_temp.b = '0;
                   end
       endcase
   end

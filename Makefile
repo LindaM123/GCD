@@ -7,6 +7,8 @@
 SIM ?= icarus
 TOPLEVEL_LANG ?= verilog
 
+
+
 VERILOG_SOURCES += $(PWD)/my_design_gcd1.sv
 # use VHDL_SOURCES for VHDL files
 
@@ -15,6 +17,7 @@ TOPLEVEL = my_design_gcd1
 
 # MODULE is the basename of the Python test file
 MODULE = test_gcd
+
 
 # include cocotb's make rules to take care of the simulator setup
 include $(shell cocotb-config --makefiles)/Makefile.sim
