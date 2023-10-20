@@ -32,7 +32,7 @@ async def my_second_test(dut):
     dut.compare_zero.value = 0;
 
     dut._log.info("next_state is %s: ", dut.next_state.value)
-    dut._log.info("state_o is %s: ", dut.state_o.value)
+
 
     await Timer(3, units="ns")
 
@@ -43,7 +43,7 @@ async def my_second_test(dut):
     dut.compare_zero.value = 0;
 
     dut._log.info("next_state is %s: ", dut.next_state.value)
-    dut._log.info("state_o is %s: ", dut.state_o.value)
+    dut._log.info("state is %s: ", dut.state.value)
 
     await Timer(3, units="ns")
 
@@ -54,7 +54,7 @@ async def my_second_test(dut):
     dut.compare_zero.value = 0;
 
     dut._log.info("next_state is %s: ", dut.next_state.value)
-    dut._log.info("state_o is %s: ", dut.state_o.value)
+    dut._log.info("state is %s: ", dut.state.value)
 
     await Timer(3, units="ns")
 
@@ -65,7 +65,7 @@ async def my_second_test(dut):
     dut.compare_zero.value = 0;
 
     dut._log.info("next_state is %s: ", dut.next_state.value)
-    dut._log.info("state_o is %s: ", dut.state_o.value)
+    dut._log.info("state is %s: ", dut.state.value)
 
     await Timer(3, units="ns")
     
@@ -76,7 +76,7 @@ async def my_second_test(dut):
     dut.compare_zero.value = 1;
 
     dut._log.info("next_state is %s: ", dut.next_state.value)
-    dut._log.info("state_o is %s: ", dut.state_o.value)
+    dut._log.info("state is %s: ", dut.state.value)
 
     await Timer(3, units="ns")
 
@@ -87,7 +87,7 @@ async def my_second_test(dut):
     dut.compare_zero.value = 0;
 
     dut._log.info("next_state is %s: ", dut.next_state.value)
-    dut._log.info("state_o is %s: ", dut.state_o.value)
+    dut._log.info("state is %s: ", dut.state.value)
 
     await Timer(3, units="ns")
 
@@ -99,7 +99,7 @@ async def my_second_test(dut):
     dut.compare_zero.value = 1;
 
     dut._log.info("next_state is %s: ", dut.next_state.value)
-    dut._log.info("state_o is %s: ", dut.state_o.value)
+    dut._log.info("state is %s: ", dut.state.value)
 
     await Timer(3, units="ns")
 
