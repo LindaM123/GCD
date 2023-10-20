@@ -40,7 +40,7 @@ module gcd_dp # (
     case(complex_sel_a)
       2'b00: gcd_inputs_temp.a = gcd_inputs.a;
       2'b10: gcd_inputs_temp.a = gcd_o_temp.a;
-      2'bx1: gcd_inputs_temp.a = operand_a_i;
+      default : gcd_inputs_temp.a = operand_a_i;
     endcase
   end
 
@@ -49,11 +49,9 @@ module gcd_dp # (
     case(complex_sel_b)
       2'b00: gcd_inputs_temp.b = gcd_inputs.b;
       2'b10: gcd_inputs_temp.b = gcd_o_temp.a;
-      2'bx1: gcd_inputs_temp.b = operand_b_i;
+      default: gcd_inputs_temp.b = operand_b_i;
     endcase
   end
-
-
 
   always_ff @(posedge clk_i or negedge nreset_i) begin
       if(!nreset_i) begin 
@@ -66,24 +64,13 @@ module gcd_dp # (
       end
   end
 
+  assign compare_zero_temp = ((gcd_inputs_temp.a == '0) | (gcd_inputs_temp.b == '0) ) ;
+  assign sub = gcd_inputs.a - gcd_inputs.b;
+  assign  compare_zero_o = compare_zero_temp;
+  assign  compute_enable_o = !(compare_zero_temp) && gcd_enable_i;
 
-
-  always_comb begin       
-    sub = gcd_inputs.a - gcd_inputs.b;
-    compare_zero_temp = ((gcd_inputs_temp.a == '0) | (gcd_inputs_temp.b == '0) ) ;
-   
-    if(sub[DATA_WIDTH-1])
-    begin
-      gcd_o_temp.a = !sub + 1;
-    end
-    else
-    begin
-      gcd_o_temp.a = sub;
-    end
-    compare_zero_o = compare_zero_temp;
-    compute_enable_o = !(compare_zero_temp) && gcd_enable_i;
-  end
-
+  assign  gcd_o_temp.a = sub[DATA_WIDTH-1] ? (!sub + 1) : sub;
+  assign  gcd_o_temp.b = '0;
 
 
   always @(posedge clk_i or negedge nreset_i) begin 

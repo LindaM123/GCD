@@ -11,15 +11,17 @@ module gcd_top # (
   ,input logic clk_i
   ,input logic nreset_i
   ,output gcd_data gcd_o
+  ,output logic gcd_done_o
 );
 
-wire compute_enable_io;
-wire compare_zero_io;
+logic compute_enable_io;
+logic compare_zero_io;
 
-wire flag_init_io;
-wire flag_compute_io;
-wire flag_finish_io;
+logic flag_init_io;
+logic flag_compute_io;
+logic flag_finish_io;
 
+assign gcd_done_o = flag_finish_io;
 
 
 gcd_dp #(.DATA_WIDTH(DATA_WIDTH)) dp1 (.operand_a_i(operand_a_i), 

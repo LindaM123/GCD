@@ -69,9 +69,10 @@ module gcd_fsm (
 
 
 always_ff @(posedge clk_i or negedge nreset_i) begin
-    if(!nreset_i) 
-    begin
+    if(!nreset_i) begin
         flag_init_o <= 1'b1;
+        flag_compute_o <= 1'b0;
+        flag_finish_o <= 1'b0;
     end
     else begin 
       case(next_state)
