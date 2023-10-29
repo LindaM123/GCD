@@ -18,7 +18,7 @@ VERILOG_SOURCES += $(PWD)/gcd_top.sv
 TOPLEVEL = gcd_top
 
 # MODULE is the basename of the Python test file
-MODULE = test_gcd_top
+MODULE = test_gcd_top_dos
 
 # include cocotb's make rules to take care of the simulator setup
 include $(shell cocotb-config --makefiles)/Makefile.sim

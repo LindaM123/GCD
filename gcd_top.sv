@@ -3,14 +3,14 @@
 `include "gcd_dp.sv"
 
 module gcd_top # (
-  parameter DATA_WIDTH = 2
+  parameter DATA_WIDTH = 8
 ) (
   input logic [DATA_WIDTH-1:0] operand_a_i 
   ,input logic [DATA_WIDTH-1:0] operand_b_i
   ,input logic gcd_enable_i
   ,input logic clk_i
   ,input logic nreset_i
-  ,output gcd_data gcd_o
+  ,output logic [DATA_WIDTH-1:0] gcd_o
   ,output logic gcd_done_o
 );
 
@@ -34,7 +34,7 @@ gcd_dp #(.DATA_WIDTH(DATA_WIDTH)) dp1 (.operand_a_i(operand_a_i),
                                        .flag_finish_i(flag_finish_io),
                                        .compute_enable_o(compute_enable_io), 
                                        .compare_zero_o(compare_zero_io), 
-                                       .gcd_o(gcd_o) );
+                                       .gcd_o(gcd_o));
 
 gcd_fsm fsm1 (.clk_i(clk_i), 
               .nreset_i(nreset_i), 
