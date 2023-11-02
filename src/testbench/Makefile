@@ -6,12 +6,16 @@
 # defaults #simulador a usar icarus, #lenguaje verilog
 SIM ?= icarus
 TOPLEVEL_LANG ?= verilog
+COCOTB_HDL_TIMEUNIT = "1ns"
+COCOTB_HDL_TIMEPRECISION = "10ps"
 
 #VERILOG_SOURCES += $(PWD)/my_design_gcd1.sv
 
-#Test the fsm:
-VERILOG_SOURCES += $(PWD)/gcd_top.sv
 
+#Test the fsm:
+VERILOG_SOURCES += $(PWD)/../verilog/gcd_top.sv
+VERILOG_SOURCES += $(PWD)/../verilog/gcd_fsm.sv
+VERILOG_SOURCES += $(PWD)/../verilog/gcd_dp.sv
 # use VHDL_SOURCES for VHDL files
 
 # TOPLEVEL is the name of the toplevel module in your Verilog or VHDL file

@@ -1,6 +1,4 @@
-`include "gcd.svh"
-`include "gcd_fsm.sv"
-`include "gcd_dp.sv"
+`include "../include/gcd.svh"
 
 module gcd_top # (
   parameter DATA_WIDTH = 8
