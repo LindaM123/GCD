@@ -62,7 +62,7 @@ module gcd_fsm (
 
         end
         S_FINISH : next_state = S_FINISH;
-        default : next_state = next_state;
+        default : next_state = S_INIT;
         endcase
   end
 

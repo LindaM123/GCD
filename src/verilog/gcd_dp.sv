@@ -2,9 +2,7 @@
 // SPDX-License-Identifier: CC0-1.0 
 `include "../include/gcd.svh"
 
-module gcd_dp # (
-  parameter DATA_WIDTH = 2
-) (
+module gcd_dp (
   input logic [DATA_WIDTH-1:0] operand_a_i
   ,input logic [DATA_WIDTH-1:0] operand_b_i
   ,input logic clk_i
@@ -58,7 +56,6 @@ module gcd_dp # (
       if(!nreset_i) begin 
         gcd_inputs.a <= '0;
         gcd_inputs.b <= '0;
-        gcd_done_o <= '0;
       end
       else begin
         gcd_inputs.a <= gcd_inputs_temp.a;
@@ -75,13 +72,13 @@ module gcd_dp # (
  
   always @(posedge clk_i or negedge nreset_i) begin 
       if(!nreset_i) begin
-        gcd_o = '0; 
+        gcd_o <= '0; 
         gcd_done_o <= '0;
       end
       else if(flag_finish_i) //if state is finish
       begin
-        gcd_o = operand_a_i== '0 ? gcd_inputs.a : gcd_inputs.b;
-        gcd_done_o = 1;
+        gcd_o <= operand_a_i== '0 ? gcd_inputs.a : gcd_inputs.b;
+        gcd_done_o <= 1;
       end 
   end
 

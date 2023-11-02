@@ -1,8 +1,6 @@
 `include "../include/gcd.svh"
 
-module gcd_top # (
-  parameter DATA_WIDTH = 8
-) (
+module gcd_top (
   input logic [DATA_WIDTH-1:0] operand_a_i 
   ,input logic [DATA_WIDTH-1:0] operand_b_i
   ,input logic gcd_enable_i
@@ -20,7 +18,7 @@ logic flag_compute_io;
 logic flag_finish_io;
 
 
-gcd_dp #(.DATA_WIDTH(DATA_WIDTH)) dp1 (.operand_a_i(operand_a_i), 
+gcd_dp dp1 (.operand_a_i(operand_a_i), 
                                        .operand_b_i(operand_b_i), 
                                        .clk_i(clk_i), 
                                        .nreset_i(nreset_i),
