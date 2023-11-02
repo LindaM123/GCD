@@ -19,8 +19,6 @@ logic flag_init_io;
 logic flag_compute_io;
 logic flag_finish_io;
 
-assign gcd_done_o = flag_finish_io;
-
 
 gcd_dp #(.DATA_WIDTH(DATA_WIDTH)) dp1 (.operand_a_i(operand_a_i), 
                                        .operand_b_i(operand_b_i), 
@@ -32,7 +30,8 @@ gcd_dp #(.DATA_WIDTH(DATA_WIDTH)) dp1 (.operand_a_i(operand_a_i),
                                        .flag_finish_i(flag_finish_io),
                                        .compute_enable_o(compute_enable_io), 
                                        .compare_zero_o(compare_zero_io), 
-                                       .gcd_o(gcd_o));
+                                       .gcd_o(gcd_o),
+                                       .gcd_done_o(gcd_done_o));
 
 gcd_fsm fsm1 (.clk_i(clk_i), 
               .nreset_i(nreset_i), 

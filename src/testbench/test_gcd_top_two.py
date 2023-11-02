@@ -9,7 +9,7 @@ from random import randint
 import math
 
 async def generate_clock(dut):
-    for cycle in range(800):
+    for cycle in range(5000):
         dut.clk_i.value = 0
         await Timer(1, units="ns")
         dut.clk_i.value = 1
