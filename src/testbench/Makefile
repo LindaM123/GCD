@@ -16,6 +16,7 @@ COCOTB_HDL_TIMEPRECISION = "10ps"
 VERILOG_SOURCES += $(PWD)/../verilog/gcd_top.sv
 VERILOG_SOURCES += $(PWD)/../verilog/gcd_fsm.sv
 VERILOG_SOURCES += $(PWD)/../verilog/gcd_dp.sv
+VERILOG_SOURCES += $(PWD)/../verilog/enable_sync.sv
 # use VHDL_SOURCES for VHDL files
 
 # TOPLEVEL is the name of the toplevel module in your Verilog or VHDL file

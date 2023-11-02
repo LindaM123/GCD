@@ -1,6 +1,8 @@
 `include "../include/gcd.svh"
 
-module gcd_top (
+module gcd_top # (
+  parameter DATA_WIDTH = 8
+) (
   input logic [DATA_WIDTH-1:0] operand_a_i 
   ,input logic [DATA_WIDTH-1:0] operand_b_i
   ,input logic gcd_enable_i
@@ -17,12 +19,19 @@ logic flag_init_io;
 logic flag_compute_io;
 logic flag_finish_io;
 
+logic gcd_enable_o;
 
-gcd_dp dp1 (.operand_a_i(operand_a_i), 
+ enable_sync enable_sync1(
+  .clk_i(clk_i),
+  .nreset_i(nreset_i),
+  .gcd_enable_i(gcd_enable_i),
+  .gcd_enable_o(gcd_enable_o));
+
+gcd_dp #(.DATA_WIDTH(DATA_WIDTH)) dp1 (.operand_a_i(operand_a_i), 
                                        .operand_b_i(operand_b_i), 
                                        .clk_i(clk_i), 
                                        .nreset_i(nreset_i),
-                                       .gcd_enable_i(gcd_enable_i), 
+                                       .gcd_enable_i(gcd_enable_o), 
                                        .flag_init_i(flag_init_io),
                                        .flag_compute_i(flag_compute_io),
                                        .flag_finish_i(flag_finish_io),
@@ -33,13 +42,11 @@ gcd_dp dp1 (.operand_a_i(operand_a_i),
 
 gcd_fsm fsm1 (.clk_i(clk_i), 
               .nreset_i(nreset_i), 
-              .gcd_enable_i(gcd_enable_i), 
+              .gcd_enable_i(gcd_enable_o), 
               .compare_zero_i(compare_zero_io), 
               .compute_enable_i(compute_enable_io), 
               .flag_init_o(flag_init_io),
               .flag_compute_o(flag_compute_io),
               .flag_finish_o(flag_finish_io) );
-
-
 
 endmodule
