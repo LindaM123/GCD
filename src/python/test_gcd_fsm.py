@@ -1,5 +1,3 @@
-# This file is public domain, it can be freely copied without restrictions.
-# SPDX-License-Identifier: CC0-1.0
 
 # test_my_design.py (extended)
 
@@ -25,7 +23,6 @@ async def my_second_test(dut):
         
     await Timer(5, units="ns")  # wait a bit
     
-    #se coloca en decimal el valor
     dut.gcd_enable.value = 0;
     dut.nreset_i.value = 1;
     dut.compute_enable.value = 0;
@@ -36,7 +33,6 @@ async def my_second_test(dut):
 
     await Timer(3, units="ns")
 
-    #se coloca en decimal el valor
     dut.gcd_enable.value = 1;
     dut.nreset_i.value = 1;
     dut.compute_enable.value = 0;
@@ -47,7 +43,7 @@ async def my_second_test(dut):
 
     await Timer(3, units="ns")
 
-    #se coloca en decimal el valor
+
     dut.gcd_enable.value = 0;
     dut.nreset_i.value = 1;
     dut.compute_enable.value = 0;
@@ -58,7 +54,6 @@ async def my_second_test(dut):
 
     await Timer(3, units="ns")
 
-    #se coloca en decimal el valor
     dut.gcd_enable.value = 0;
     dut.nreset_i.value = 1;
     dut.compute_enable.value = 1;
@@ -69,7 +64,7 @@ async def my_second_test(dut):
 
     await Timer(3, units="ns")
     
-    #se coloca en decimal el valor
+
     dut.gcd_enable.value = 0;
     dut.nreset_i.value = 1;
     dut.compute_enable.value = 0;
@@ -80,7 +75,7 @@ async def my_second_test(dut):
 
     await Timer(3, units="ns")
 
-    #se coloca en decimal el valor
+
     dut.gcd_enable.value = 0;
     dut.nreset_i.value = 1;
     dut.compute_enable.value = 1;
@@ -92,7 +87,7 @@ async def my_second_test(dut):
     await Timer(3, units="ns")
 
 
-    #se coloca en decimal el valor
+
     dut.gcd_enable.value = 1;
     dut.nreset_i.value = 0;
     dut.compute_enable.value = 0;

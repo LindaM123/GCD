@@ -1,5 +1,3 @@
-# This file is public domain, it can be freely copied without restrictions.
-# SPDX-License-Identifier: CC0-1.0
 
 # test_my_design.py (extended)
 
@@ -26,14 +24,14 @@ async def my_second_test(dut):
         #se coloca en decimal el valor
         opa = randint(1,255)
         opb = randint(1,255)
-
+      
         dut.operand_a_i.value = opa
         dut.operand_b_i.value = opb
 
         dut.gcd_enable_i.value = 1
         dut.nreset_i.value = 0
 
-        await Timer(5, units="ns")  # wait a bit
+        #await Timer(5, units="ns")  # wait a bit
         await RisingEdge(dut.clk_i)  # wait for falling edge/"negedge"
         
         dut.nreset_i.value = 1
@@ -44,6 +42,7 @@ async def my_second_test(dut):
         
         await RisingEdge(dut.gcd_done_o)  # wait for falling edge/"negedge"
         result = dut.gcd_o
+        await FallingEdge(dut.clk_i) 
 
         golden = math.gcd(opa,opb)
         print(golden,result)

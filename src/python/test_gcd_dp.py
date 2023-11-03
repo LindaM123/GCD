@@ -1,5 +1,4 @@
-# This file is public domain, it can be freely copied without restrictions.
-# SPDX-License-Identifier: CC0-1.0
+
 # test_my_design.py (extended)
 import cocotb
 from cocotb.triggers import FallingEdge, Timer
@@ -19,7 +18,7 @@ async def my_second_test(dut):
     #Try accessing the design.
 
     await cocotb.start(generate_clock(dut))  # run the clock "in the background"
-    #se coloca en decimal el valor
+
     dut.gcd_enable_i = 1;
     dut.nreset_i.value = 1;
 

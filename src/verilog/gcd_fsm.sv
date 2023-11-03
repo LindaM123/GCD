@@ -1,5 +1,4 @@
-// This file is public domain, it can be freely copied without restrictions.
-// SPDX-License-Identifier: CC0-1.0
+
 `include "../include/gcd.svh"
 
 module gcd_fsm (
@@ -12,7 +11,7 @@ module gcd_fsm (
   ,output logic flag_compute_o
   ,output logic flag_finish_o
 );
-// el reset se activa cuando nreset es cero
+
 
   typedef enum logic [1:0]{
       S_INIT, //00
@@ -21,10 +20,6 @@ module gcd_fsm (
   } state_e;
 
   state_e state, next_state;
-
-//assign flag_init_o = !state[1] && !state[0];
-//assign flag_compute_o = !state[1] && state[0];
-//assign flag_finish_o  = state[1] && !state[0];
 
 
   always_ff @(posedge clk_i or negedge nreset_i) begin 
