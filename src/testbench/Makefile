@@ -8,14 +8,14 @@ COCOTB_HDL_TIMEPRECISION = "10ps"
 
 
 #Test the fsm:
-VERILOG_SOURCES += $(PWD)/../verilog/tt_um_LindaM123_gcd_top.sv
+VERILOG_SOURCES += $(PWD)/../verilog/gcd_top.sv
 VERILOG_SOURCES += $(PWD)/../verilog/gcd_fsm.sv
 VERILOG_SOURCES += $(PWD)/../verilog/gcd_dp.sv
 
 # use VHDL_SOURCES for VHDL files
 
 # TOPLEVEL is the name of the toplevel module in your Verilog or VHDL file
-TOPLEVEL = tt_um_LindaM123_gcd_top
+TOPLEVEL = gcd_top
 
 # MODULE is the basename of the Python test file
 MODULE = test_gcd_top_two
