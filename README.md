@@ -38,11 +38,6 @@ GCD-main/
 - [Optional] Cocotb for testbench simulation
 - Make (for using the Makefile)
 
-Install Python dependencies if needed:
-
-```bash
-pip install cocotb
-```
 
 ## 🧮 Subtraction-Based GCD Algorithm
 
@@ -65,26 +60,6 @@ return a
 - **FSM Controller:** Directs whether to subtract A–B or B–A, checks for equality, and signals when the GCD is ready.  
 - **Top Module:** Connects both components and defines the I/O interface (e.g., start signal, done signal, result).
 
-## 🧪 Running the Tests
-
-To compile and simulate:
-
-```bash
-make
-```
-
-Or run a specific Python testbench:
-
-```bash
-python3 test_gcd_top.py
-```
-
-You can also run other test files such as:
-
-```bash
-python3 test_gcd_fsm.py
-python3 test_gcd_dp.py
-```
 
 ## 📊 Module Responsibilities
 
@@ -95,13 +70,8 @@ python3 test_gcd_dp.py
 | `gcd_top.sv`          | Top-level integration module                                 |
 | `test_gcd_*.py`       | Python testbenches for simulation and verification            |
 
-## 🧰 Makefile Usage
 
-```bash
-make run        # Compile and run simulation
-make clean      # Remove generated files
-```
 
 ## 📝 Author
 
-Project developed as part of a **digital design and verification** learning project using subtraction-based GCD computation in hardware.
+Project developed as part of a **VLSI course** learning project using subtraction-based GCD computation in hardware.
